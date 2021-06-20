@@ -1,5 +1,5 @@
 import "./init.js";
-import { generateCube, generateMatCapSphere, generateDoor } from "./create.js";
+import { generateCube, generateMatCapSphere, generateDoor, generateEnvSphere } from "./create.js";
 import "./debug";
 generateCube();
 generateCube();
@@ -7,5 +7,6 @@ generateCube();
 generateCube();
 generateCube();
 generateMatCapSphere();
+generateEnvSphere();
 generateDoor();
 console.log("generateCube");

@@ -25,6 +25,7 @@ const doorRoughness = textureLoader.load("/textures/door/roughness.jpg");
 const gradient = textureLoader.load("/textures/gradients/5.jpg");
 gradient.magFilter = THREE.NearestFilter;
 gradient.minFilter = THREE.NearestFilter;
+
 //Debug OBject
 export const debugObject = {
   color: 0xfff0cc,
@@ -35,6 +36,7 @@ export const debugObject = {
   generateDepthSphere,
   generateLambertTorus,
   generatePhongSphere,
+  generateEnvSphere,
   generateDoor,
 };
 
@@ -138,4 +140,29 @@ export function generateDoor() {
   door.position.set(x, 10, z);
   door.geometry.setAttribute("uv2", new THREE.BufferAttribute(uv2, 2));
   group.add(door);
+}
+
+// Environment Map
+const cubeTextureLoader = new THREE.CubeTextureLoader();
+const environmentMapTexture = cubeTextureLoader.load([
+  "/textures/environmentMaps/5/px.png",
+  "/textures/environmentMaps/5/nx.png",
+  "/textures/environmentMaps/5/py.png",
+  "/textures/environmentMaps/5/ny.png",
+  "/textures/environmentMaps/5/pz.png",
+  "/textures/environmentMaps/5/nz.png",
+]);
+console.log(environmentMapTexture);
+
+const environmentMaterial = new THREE.MeshStandardMaterial({ envMap: environmentMapTexture });
+environmentMaterial.metalness = 1;
+environmentMaterial.roughness = 0;
+
+export function generateEnvSphere() {
+  const x = Math.floor((Math.random() - 0.5) * 50);
+  const y = Math.floor(Math.random() * 50);
+  const z = Math.floor((Math.random() - 0.5) * 50);
+  const sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(3, 32, 32), environmentMaterial);
+  sphere.position.set(x, y, z);
+  group.add(sphere);
 }

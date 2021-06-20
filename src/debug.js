@@ -10,6 +10,7 @@ gui.add(debugObject, "generateDepthSphere");
 gui.add(debugObject, "generateLambertTorus");
 gui.add(debugObject, "generatePhongSphere");
 gui.add(debugObject, "generateDoor");
+gui.add(debugObject, "generateEnvSphere");
 
 const doorFolder = gui.addFolder("door");
 doorFolder.add(standardMaterial, "displacementScale").min(0).max(10).step(0.001);

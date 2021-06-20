@@ -41,13 +41,13 @@ renderer.setSize(sizes.width, sizes.height);
 /**
  * OrbitControls
  */
-// const orbitControls = new OrbitControls(camera, renderer.domElement);
-// orbitControls.enableDamping = true;
-// orbitControls.update();
+const orbitControls = new OrbitControls(camera, renderer.domElement);
+orbitControls.enableDamping = true;
+orbitControls.update();
 const flyControls = new FlyControls(camera, renderer.domElement);
 flyControls.movementSpeed = 1000;
 flyControls.autoForward = false;
-flyControls.dragToLook = false;
+flyControls.dragToLook = true;
 flyControls.rollSpeed = Math.PI / 24;
 
 /**
@@ -73,9 +73,9 @@ const clock = new THREE.Clock();
 const animate = () => {
   const delta = clock.getDelta();
   requestAnimationFrame(animate);
-  // orbitControls.update();
-  flyControls.update(delta);
-  flyControls.movementSpeed = 300 * delta;
+  orbitControls.update();
+  // flyControls.update(delta);
+  // flyControls.movementSpeed = 300 * delta;
   renderer.render(scene, camera);
   // generateCube();
 };

@@ -1,9 +1,11 @@
 import "./init.js";
-import { generateCube } from "./create.js";
+import { generateCube, generateMatCapSphere, generateDoor } from "./create.js";
 import "./debug";
 generateCube();
 generateCube();
 generateCube();
 generateCube();
 generateCube();
+generateMatCapSphere();
+generateDoor();
 console.log("generateCube");

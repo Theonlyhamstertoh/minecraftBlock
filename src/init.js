@@ -22,8 +22,15 @@ export const scene = new THREE.Scene();
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(60, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(0, 25, 15);
-camera.lookAt(new Vector3(0, 0, 0));
+camera.position.set(0, 4, 15);
+camera.lookAt(new Vector3(0, 4, 8));
+
+/**
+ * Lighting
+ */
+const light = new THREE.AmbientLight(0xffffff, 0.5);
+const pointLight = new THREE.PointLight(0xffffff, 0.5);
+pointLight.position.set(2, 12, 12);
 /**
  * Renderer
  */
@@ -40,7 +47,6 @@ renderer.setSize(sizes.width, sizes.height);
 const flyControls = new FlyControls(camera, renderer.domElement);
 flyControls.movementSpeed = 1000;
 flyControls.autoForward = false;
-
 flyControls.dragToLook = false;
 flyControls.rollSpeed = Math.PI / 24;
 
@@ -58,7 +64,7 @@ export const group = new THREE.Group();
 /**
  * Add To Scene
  */
-scene.add(gridHelper, axesHelper, group);
+scene.add(gridHelper, axesHelper, group, light, pointLight);
 
 /**
  * Animate
@@ -71,12 +77,12 @@ const animate = () => {
   flyControls.update(delta);
   flyControls.movementSpeed = 300 * delta;
   renderer.render(scene, camera);
-  generateCube();
+  // generateCube();
 };
 animate();
 
 /**
- * Resizing
+ * Resizing`
  */
 window.addEventListener("resize", () => {
   sizes.width = window.innerWidth;
